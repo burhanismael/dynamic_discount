@@ -16,8 +16,7 @@ odoo.define('custom.DiscountButton', function(require) {
                     isInputSelected: true
                 });
                 if (confirmed) {
-                    const val = Math.round(Math.max(0,Math.min(100,parseFloat(payload))));
-                    await self.apply_discount(val, discount_type);
+                    await self.apply_discount(Number(payload), discount_type);
                 }
 
             }
@@ -69,7 +68,7 @@ odoo.define('custom.DiscountButton', function(require) {
                 }
 
                 // Add discount
-                var discount = 0;
+                var discount = 0.0;
                 // Check the type of discount selected
                 if (discount_type === 'percentage') {
                 debugger;
@@ -83,6 +82,7 @@ odoo.define('custom.DiscountButton', function(require) {
                     }
                     discount = - pc / 100.0 * base_to_discount;
                 } else {
+                debugger;
                     discount = - pc;
                 }
 
